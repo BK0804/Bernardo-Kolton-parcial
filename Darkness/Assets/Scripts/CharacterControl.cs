@@ -12,6 +12,9 @@ public class CharacterControl : MonoBehaviour
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
     }
 
     // Update is called once per frame
@@ -26,5 +29,10 @@ public class CharacterControl : MonoBehaviour
         direction.Normalize();
         //transform.position += direction * speed * Time.deltaTime;
         rigidbody.velocity = direction * speed * Time.deltaTime;
+
+        float rotationY = Input.GetAxis("Mouse X");
+        transform.Rotate(new Vector3(rotationY * Time.deltaTime * rotationSpeed, 0, 0));
+
+      
     }
 }
